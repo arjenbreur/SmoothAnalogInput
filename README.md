@@ -1,7 +1,9 @@
-Arduino
+SmoothAnalogInput (for Arduino)
 =======
-
-Arduino related code.
+Based on Richard Lee's original repo
+* Blog: http://rl337.org/2012/01/11/smooth-analog-input-class-for-arduino/
+* GIT repo: https://github.com/rl337/Arduino
+Inspired by Arduino code example "Smoothing": https://www.arduino.cc/en/Tutorial/Smoothing
 
 
 SmoothAnalogInput -- Smooths out analog input over some specified number of samples.
