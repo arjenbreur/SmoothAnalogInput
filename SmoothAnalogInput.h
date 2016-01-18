@@ -15,6 +15,7 @@ class SmoothAnalogInput {
     private:
         int _samples[SMOOTH_ANALOG_INPUT_SIZE];
         int _pin;
+        int _sampleSize;
         int _index;
         int _mapMin;
         int _mapMax;

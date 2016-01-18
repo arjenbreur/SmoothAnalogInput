@@ -6,6 +6,7 @@ SmoothAnalogInput::SmoothAnalogInput() {
     _mapMax = 1024;
     _mapMin = 0;
     _res = 1;
+	_sampleSize = SMOOTH_ANALOG_INPUT_SIZE;
 }
 
 void SmoothAnalogInput::attach(int pin) {
@@ -13,7 +14,7 @@ void SmoothAnalogInput::attach(int pin) {
     _index = 0;
 
     int start = analogRead(pin);
-    for(int i = 0; i < SMOOTH_ANALOG_INPUT_SIZE; i++) {
+    for(int i = 0; i < _sampleSize; i++) {
         _samples[i] = start;
     }
 }
@@ -40,7 +41,7 @@ int SmoothAnalogInput::raw() {
         value = last;
     }
 
-    _index = (_index + 1) % SMOOTH_ANALOG_INPUT_SIZE;
+    _index = (_index + 1) % _sampleSize;
     _samples[_index] = value;
 
     return value;
@@ -50,10 +51,10 @@ int SmoothAnalogInput::read() {
     raw();
 
     int total = 0;
-    for(int i = 0; i < SMOOTH_ANALOG_INPUT_SIZE; i++) {
+    for(int i = 0; i < _sampleSize; i++) {
         total += _samples[i];
     }
 
-    int current = total / SMOOTH_ANALOG_INPUT_SIZE;
+    int current = total / _sampleSize;
     return map(current, 0, 1024, _mapMin, _mapMax);
 }
