@@ -17,12 +17,12 @@ int last;
 void setup() {
   Serial.begin(9600);
   servo.attach(7);
-  ai.attach(A0);
+  ai.setup(A0, 24); // attach to pin A0, use 24 samples to calculate running average
   last = -1;
 }
 
 void loop() {
-  int sensorReading = ai.read();
+  int sensorReading = ai.read(); // read analog input and return running average
 
   int scaled = map(sensorReading, 0, 1024, 0, 180);
   if (scaled != last) {

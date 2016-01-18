@@ -2,17 +2,23 @@
 
 SmoothAnalogInput::SmoothAnalogInput() {
     _pin = -1;
+	_sampleSize = 1;
+	_maxSampleSize = SMOOTH_ANALOG_INPUT_SIZE;
     _index = -1;
     _mapMax = 1024;
     _mapMin = 0;
     _res = 1;
-	_sampleSize = SMOOTH_ANALOG_INPUT_SIZE;
 }
 
+// DEPRECATED, use setup() instead
 void SmoothAnalogInput::attach(int pin) {
-    _pin = pin;
-    _index = 0;
+	setup(pin, _maxSampleSize);
+}
 
+void SmoothAnalogInput::setup(int pin, int sampleSize){
+	_pin = pin;
+	_sampleSize = (sampleSize<=_maxSampleSize)?sampleSize:_maxSampleSize;
+    _index = 0;
     int start = analogRead(pin);
     for(int i = 0; i < _sampleSize; i++) {
         _samples[i] = start;
