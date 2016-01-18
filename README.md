@@ -8,11 +8,12 @@ Inspired by Arduino code example "Smoothing": https://www.arduino.cc/en/Tutorial
 
 SmoothAnalogInput -- Smooths out analog input over some specified number of samples.
 
-example:
-
+Example:
+```Arduino
 Servo servo;
 SmoothAnalogInput ai;
 int last;
+
 void setup() {
   Serial.begin(9600);
   servo.attach(7);
@@ -30,3 +31,4 @@ void loop() {
     servo.write(scaled);
   }
 }
+```
