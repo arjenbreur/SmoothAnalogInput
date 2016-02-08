@@ -3,19 +3,19 @@
 
 #include <Arduino.h>
 
-#define SMOOTH_ANALOG_INPUT_SIZE 32 // Sets maximum available sample size
+const byte SMOOTH_ANALOG_INPUT_SIZE = 32; // Sets maximum available sample size
 
 class SmoothAnalogInput {
     public:
         SmoothAnalogInput();
         void attach(int pin); //DEPRECATED, use setup() instead
-		void setup(int pin, int sampleSize);
+		void setup(byte pin, int sampleSize);
         void scale(int min, int max);
         int read();
         int raw();
     private:
         int _samples[SMOOTH_ANALOG_INPUT_SIZE];
-        int _pin;
+        byte _pin;
         int _sampleSize;
         int _maxSampleSize;
         int _index;

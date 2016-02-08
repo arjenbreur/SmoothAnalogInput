@@ -15,7 +15,7 @@ void SmoothAnalogInput::attach(int pin) {
 	setup(pin, _maxSampleSize);
 }
 
-void SmoothAnalogInput::setup(int pin, int sampleSize){
+void SmoothAnalogInput::setup(byte pin, int sampleSize){
 	_pin = pin;
 	_sampleSize = (sampleSize<=_maxSampleSize)?sampleSize:_maxSampleSize;
     _index = 0;
